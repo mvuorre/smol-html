@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="smol is a Quarto HTML format without Bootstrap, Quarto’s JavaScript or icon fonts.">
+
+<title>smol</title>
+<style>
+</style>
+
+
+<script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
+<script src="site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
+
+
+<link rel="stylesheet" href="site_libs/quarto-contrib/quarto-project/smol/smol.css">
+<meta property="og:title" content="smol">
+<meta property="og:description" content="smol is a Quarto HTML format without Bootstrap, Quarto’s JavaScript or icon fonts.">
+<meta property="og:site_name" content="smol">
+</head>
+
+<body>
+
+<header class="site-header"><nav class="site-nav" aria-label="Site"><a class="site-title" href="./index.html">smol</a><ul class="nav-left"><li><a href="./article.html">Article</a></li><li><a href="./blog.html">Blog</a></li><li><details><summary>More</summary><ul><li><a href="./listings.html">Listings</a></li><li><a href="./about.html">About</a></li></ul></details></li></ul><ul class="nav-right"><li><a href="https://github.com/mvuorre/smol-html">GitHub</a></li></ul></nav></header><main class="content" id="quarto-content">
+
+<header id="title-block-header" class="quarto-title-block">
+<h1 class="title">smol</h1>
+<p class="subtitle">A small, fast HTML format for Quarto</p>
+<div class="description">smol is a Quarto HTML format without Bootstrap, Quarto’s JavaScript or icon fonts.</div>
+</header>
+
+<nav id="TOC" role="doc-toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#smaller-pages" id="toc-smaller-pages">Smaller pages</a></li>
+  <li><a href="#use-it" id="toc-use-it">Use it</a></li>
+  <li><a href="#features" id="toc-features">Features</a>
+  <ul>
+  <li><a href="#text" id="toc-text">Text</a></li>
+  <li><a href="#code" id="toc-code">Code</a></li>
+  <li><a href="#math" id="toc-math">Math</a></li>
+  <li><a href="#figures-and-tables" id="toc-figures-and-tables">Figures and tables</a></li>
+  <li><a href="#callouts" id="toc-callouts">Callouts</a></li>
+  <li><a href="#columns-and-tabsets" id="toc-columns-and-tabsets">Columns and tabsets</a></li>
+  <li><a href="#diagrams" id="toc-diagrams">Diagrams</a></li>
+  <li><a href="#footnotes" id="toc-footnotes">Footnotes</a></li>
+  </ul></li>
+  </ul>
+</nav>
+<p>smol makes Quarto websites and documents without Bootstrap, Quarto’s JavaScript or icon fonts. Listings, RSS, citations, cross-references, callouts and margin notes still work. This site is built with it.</p>
+<h2 id="smaller-pages">Smaller pages</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 26%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Page</th>
+<th style="text-align: right;">Normal Quarto</th>
+<th style="text-align: right;">smol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Home page, with code, math and a diagram</td>
+<td style="text-align: right;">1.4 MB in 26 files</td>
+<td style="text-align: right;">16 KB in 5 files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Article with math and citations</td>
+<td style="text-align: right;">612 KB in 21 files</td>
+<td style="text-align: right;">9.2 KB in 2 files</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Blog page with a listing</td>
+<td style="text-align: right;">617 KB in 23 files</td>
+<td style="text-align: right;">16 KB in 4 files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Blog post</td>
+<td style="text-align: right;">365 KB in 19 files</td>
+<td style="text-align: right;">6.3 KB in 2 files</td>
+</tr>
+</tbody>
+</table>
+<p>What each page downloads: HTML, CSS and JavaScript (gzipped), and fonts. Normal Quarto runs 105 KB of JavaScript on a plain blog post; smol runs none. Quarto still adds a small script for a few features: listings (9 KB), and keyboard keys and Mermaid diagrams (under 1 KB each). Measured on this site’s pages with Quarto 1.11.9. With normal Quarto, pages with math also download MathJax’s fonts, which aren’t counted.</p>
+<h2 id="use-it">Use it</h2>
+<p>Install the extension in your project’s folder:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add mvuorre/smol-html</span></code></pre></div>
+<p>Then switch a site, or a single document, with one line:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> smol-html</span></span></code></pre></div>
+<h2 id="features">Features</h2>
+<p>What smol does with ordinary Quarto content, with Quarto’s default options. Pages are light or dark following the reader’s system setting; there’s no toggle. The <a href="./article.html">article</a> shows scholarly front matter, citations and the margin.</p>
+<h3 id="text">Text</h3>
+<p>Body text should be easy to read for a long time. This paragraph has <strong>bold</strong>, <em>italic</em>, <del>struck out</del>, <span class="smallcaps">small caps</span>, H<sub>2</sub>O, E = mc<sup>2</sup>, <code>inline code</code>, a <a href="./article.html">link to another page</a>, an <a href="https://quarto.org/">external link</a> and a <a href="#sec-lists">link to a heading</a>. Keyboard keys: <kbd title="Ctrl-Shift-P" aria-hidden="true">Ctrl-Shift-P</kbd><span class="visually-hidden">Ctrl-Shift-P</span>.</p>
+<p>A second paragraph shows how paragraphs follow each other. Long words and URLs must wrap instead of widening the page: Donaudampfschifffahrtsgesellschaftskapitänswitwe, <a href="https://example.org/a/very/long/url/that/goes/on/and/on/without/any/natural/place/to/break/it" class="uri">https://example.org/a/very/long/url/that/goes/on/and/on/without/any/natural/place/to/break/it</a>.</p>
+<h4 id="sec-lists">Lists</h4>
+<ul>
+<li>First item</li>
+<li>Second item, which is long enough to wrap onto a second line on most screens, so we can see how the text aligns
+<ul>
+<li>A nested item</li>
+</ul></li>
+<li>Third item</li>
+</ul>
+<ol type="1">
+<li>First</li>
+<li>Second</li>
+<li>Third</li>
+</ol>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">A task that is done</label></li>
+<li><label><input type="checkbox">A task that isn’t</label></li>
+</ul>
+<dl>
+<dt>Term</dt>
+<dd>
+The definition of the term.
+</dd>
+</dl>
+<h4 id="quotes-and-other-blocks">Quotes and other blocks</h4>
+<blockquote>
+<p>Simplicity is prerequisite for reliability.</p>
+<p>— Edsger W. Dijkstra</p>
+</blockquote>
+<div class="line-block">The limerick packs laughs anatomical<br>
+Into space that is quite economical.</div>
+<hr>
+<h5 id="a-fifth-level-heading">A fifth-level heading</h5>
+<h6 id="a-sixth-level-heading">A sixth-level heading</h6>
+<h3 id="code">Code</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate and summarise</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp, <span class="at">data =</span> mtcars)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">mean</span>(x) <span class="sc">&gt;</span> <span class="dv">9</span>) <span class="fu">message</span>(<span class="st">"Large"</span>) <span class="cf">else</span> <span class="fu">stop</span>(<span class="st">"Small"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summarise(values: <span class="bu">list</span>[<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the mean and standard deviation."""</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"mean"</span>: statistics.mean(values), <span class="st">"sd"</span>: statistics.stdev(values)}</span></code></pre></div>
+<p>A long line scrolls inside its block:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">very_long_function_name</span>(<span class="at">argument_one =</span> <span class="st">"a value"</span>, <span class="at">argument_two =</span> <span class="st">"another value"</span>, <span class="at">argument_three =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>))</span></code></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>analysis.R</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="analysis.R"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mpg =</span> <span class="fu">mean</span>(mpg))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="2" data-code-annotation="1">Group by the number of cylinders.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="2">Average fuel economy in each group.</span>
+</dd>
+</dl>
+<h4 id="cell-output">Cell output</h4>
+<p>These blocks copy the markup Quarto writes for executed code cells, so the demo needs no R or Python. The page sets <code>code-fold: show</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+   4.00    9.75   15.50   18.00   21.25   42.00</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">warning</span>(<span class="st">"This is a warning"</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: This is a warning</code></pre>
+</div>
+</div>
+<h3 id="math">Math</h3>
+<p>Inline math sits in the line: the sample mean <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i</annotation></semantics></math> estimates <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>. A numbered equation, referenced as <a href="#eq-normal" class="quarto-xref">Equation&nbsp;1</a>:</p>
+<p><span id="eq-normal"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mi>σ</mi><msqrt><mrow><mn>2</mn><mi>π</mi></mrow></msqrt></mrow></mfrac><mrow><mi mathvariant="normal">exp</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mi>μ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
+ \qquad(1)</annotation></semantics></math></span></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+(a + b)^2 &amp;= (a + b)(a + b) \\
+          &amp;= a^2 + 2ab + b^2
+\end{aligned}
+</annotation></semantics></math></p>
+<p>A long equation scrolls instead of widening the page:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi mathvariant="bold-italic">𝒚</mi><mo>∣</mo><mi mathvariant="bold-italic">𝜽</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>y</mi><mi>i</mi></msub><mi mathvariant="normal">log</mi><msup><mrow><mi mathvariant="normal">logit</mi><mo>⁡</mo></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="prefix">(</mo><msub><mi>η</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mi mathvariant="normal">log</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mrow><mi mathvariant="normal">logit</mi><mo>⁡</mo></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="prefix">(</mo><msub><mi>η</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow><mo>+</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mi mathvariant="script">𝒩</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>θ</mi><mi>j</mi></msub><mo>∣</mo><mn>0</mn><mo>,</mo><msup><mi>τ</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\log p(\mathbf{y} \mid \boldsymbol{\theta}) = \sum_{i=1}^{n} \left[ y_i \log \operatorname{logit}^{-1}(\eta_i) + (1 - y_i) \log\left(1 - \operatorname{logit}^{-1}(\eta_i)\right) \right] + \sum_{j=1}^{J} \log \mathcal{N}(\theta_j \mid 0, \tau^2)
+</annotation></semantics></math></p>
+<h3 id="figures-and-tables">Figures and tables</h3>
+<div id="fig-bars" class="quarto-float quarto-figure quarto-figure-center" alt="A bar chart with four bars labelled A to D.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/bars.svg" alt="A bar chart with four bars labelled A to D.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Counts in four groups. The caption can run over more than one line, so it needs comfortable spacing.
+</figcaption>
+</figure>
+</div>
+<div id="fig-panels" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-panels" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-panel-a" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-panel-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/bars.svg" data-ref-parent="fig-panels">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-panel-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Bars
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-panels" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-panel-b" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-panel-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/scatter.svg" data-ref-parent="fig-panels">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-panel-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Points and a line
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Two panels side by side. <a href="#fig-panel-b" class="quarto-xref">Figure&nbsp;2 (b)</a> shows a positive relationship.
+</figcaption>
+</figure>
+</div>
+<div id="tbl-cars" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Fuel economy of three cars, referenced as <a href="#tbl-cars" class="quarto-xref">Table&nbsp;1</a>.
+</figcaption>
+<div aria-describedby="tbl-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Car</th>
+<th style="text-align: right;">MPG</th>
+<th style="text-align: center;">Cylinders</th>
+<th style="text-align: right;">Horsepower</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: right;">105</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A wide table scrolls:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Intercept</th>
+<th>Slope</th>
+<th>SE</th>
+<th>t</th>
+<th>p</th>
+<th>R²</th>
+<th>Adj. R²</th>
+<th>AIC</th>
+<th>BIC</th>
+<th>N</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linear</td>
+<td>37.23</td>
+<td>−5.34</td>
+<td>0.56</td>
+<td>−9.56</td>
+<td>&lt; .001</td>
+<td>0.75</td>
+<td>0.74</td>
+<td>166.0</td>
+<td>170.4</td>
+<td>32</td>
+<td>Weight only</td>
+</tr>
+<tr class="even">
+<td>Quadratic</td>
+<td>49.93</td>
+<td>−13.38</td>
+<td>2.61</td>
+<td>−5.13</td>
+<td>&lt; .001</td>
+<td>0.82</td>
+<td>0.81</td>
+<td>158.0</td>
+<td>163.9</td>
+<td>32</td>
+<td>Adds weight²</td>
+</tr>
+</tbody>
+</table>
+<h3 id="callouts">Callouts</h3>
+<p>smol’s callouts show their type with colour and title, without icons.</p>
+<div class="callout callout-note">
+<div class="callout-title">
+Note
+</div>
+<p>A note without a title.</p>
+</div>
+<div class="callout callout-tip">
+<div class="callout-title">
+A tip with a title
+</div>
+<p>Tips suggest a better way to do something.</p>
+</div>
+<div class="callout callout-warning">
+<div class="callout-title">
+A warning with a heading as its title
+</div>
+<p>Warnings point out something that could go wrong.</p>
+</div>
+<div class="callout callout-important">
+<div class="callout-title">
+Important
+</div>
+<p>Important callouts say what the reader must not miss.</p>
+</div>
+<div class="callout callout-caution">
+<div class="callout-title">
+Caution
+</div>
+<p>Caution callouts are like warnings, but milder.</p>
+</div>
+<div class="callout callout-note">
+<details><summary class="callout-title">A collapsed callout</summary>
+<p>The content is hidden until the reader opens it.</p>
+</details>
+</div>
+<div class="callout callout-tip callout-simple">
+<div class="callout-title">
+Simple appearance
+</div>
+<p>No background.</p>
+</div>
+<div class="callout callout-warning callout-simple">
+<p>Minimal appearance: no title and a plain border.</p>
+</div>
+<h3 id="columns-and-tabsets">Columns and tabsets</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>The first column. It has some text that is long enough to wrap onto several lines.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>The second column. It also has some text that wraps onto several lines.</p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>Pandoc’s own columns: a narrow one, 40% wide.</p>
+</div><div class="column" style="width:60%;">
+<p>And a wide one, 60% wide.</p>
+</div>
+</div>
+<p>Without JavaScript, tabsets show their tabs one after another:</p>
+<div class="panel-tabset">
+<div class="tab">
+<div class="tab-title">
+R
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
+</div>
+<div class="tab">
+<div class="tab-title">
+Python
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>statistics.mean(x)</span></code></pre></div>
+</div>
+</div>
+<h3 id="diagrams">Diagrams</h3>
+<p>smol draws Mermaid diagrams when rendering and includes them as SVG, so the page loads no Mermaid JavaScript.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg id="mermaid-figure-1" width="672" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="flowchart" viewbox="0 0 646.84375 154.421875" role="graphics-document document" aria-roledescription="flowchart-v2" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-figure-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span{color:#333;}#mermaid-figure-1 .cluster-label span p{background-color:transparent;}#mermaid-figure-1 .label text,#mermaid-figure-1 span{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .rough-node .label text,#mermaid-figure-1 .node .label text,#mermaid-figure-1 .image-shape .label,#mermaid-figure-1 .icon-shape .label{text-anchor:middle;}#mermaid-figure-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-1 .rough-node .label,#mermaid-figure-1 .node .label,#mermaid-figure-1 .image-shape .label,#mermaid-figure-1 .icon-shape .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 rect.text{fill:none;stroke-width:0;}#mermaid-figure-1 .icon-shape,#mermaid-figure-1 .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .icon-shape p,#mermaid-figure-1 .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#mermaid-figure-1 .icon-shape rect,#mermaid-figure-1 .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-figure-1 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker id="mermaid-1795612488241_flowchart-v2-pointEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795612488241_flowchart-v2-pointStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="4.5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795612488241_flowchart-v2-circleEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="11" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1795612488241_flowchart-v2-circleStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="-1" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1795612488241_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="12" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795612488241_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="-1" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M106.688,52.653L110.854,50.579C115.021,48.506,123.354,44.358,131.021,42.285C138.688,40.211,145.688,40.211,149.188,40.211L152.688,40.211" id="L_A_B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_A_B_0" data-points="W3sieCI6MTA2LjY4NzUsInkiOjUyLjY1MzE0MDEwNjEzNzAzfSx7IngiOjEzMS42ODc1LCJ5Ijo0MC4yMTA5Mzc1fSx7IngiOjE1Ni42ODc1LCJ5Ijo0MC4yMTA5Mzc1fV0=" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path><path d="M266.688,40.211L270.854,40.211C275.021,40.211,283.354,40.211,294.32,42.881C305.285,45.551,318.883,50.892,325.682,53.562L332.481,56.232" id="L_B_C_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_B_C_0" data-points="W3sieCI6MjY2LjY4NzUsInkiOjQwLjIxMDkzNzV9LHsieCI6MjkxLjY4NzUsInkiOjQwLjIxMDkzNzV9LHsieCI6MzM2LjIwNDIwMTM5OTIyNTk1LCJ5Ijo1Ny42OTQyMzYxMDA3NzQwNH1d" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path><path d="M455.109,77.211L461.164,77.211C467.219,77.211,479.328,77.211,490.771,77.211C502.214,77.211,512.99,77.211,518.378,77.211L523.766,77.211" id="L_C_D_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_D_0" data-points="W3sieCI6NDU1LjEwOTM3NSwieSI6NzcuMjEwOTM3NX0seyJ4Ijo0OTEuNDM3NSwieSI6NzcuMjEwOTM3NX0seyJ4Ijo1MjcuNzY1NjI1LCJ5Ijo3Ny4yMTA5Mzc1fV0=" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path><path d="M336.204,96.728L328.785,99.642C321.365,102.555,306.526,108.383,285.774,111.297C265.021,114.211,238.354,114.211,211.688,114.211C185.021,114.211,158.354,114.211,141.451,112.434C124.548,110.658,117.408,107.104,113.838,105.328L110.269,103.551" id="L_C_A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_A_0" data-points="W3sieCI6MzM2LjIwNDIwMTM5OTIyNTk1LCJ5Ijo5Ni43Mjc2Mzg4OTkyMjU5N30seyJ4IjoyOTEuNjg3NSwieSI6MTE0LjIxMDkzNzV9LHsieCI6MjExLjY4NzUsInkiOjExNC4yMTA5Mzc1fSx7IngiOjEzMS42ODc1LCJ5IjoxMTQuMjEwOTM3NX0seyJ4IjoxMDYuNjg3NSwieSI6MTAxLjc2ODczNDg5Mzg2Mjk3fV0=" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_A_B_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_B_C_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel" transform="translate(491.4375, 77.2109375)"><g class="label" data-id="L_C_D_0" transform="translate(-11.328125, -12)"><foreignobject width="22.65625" height="24">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel">
+<p>
+Yes
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="edgeLabel" transform="translate(211.6875, 114.2109375)"><g class="label" data-id="L_C_A_0" transform="translate(-9.3984375, -12)"><foreignobject width="18.796875" height="24">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel">
+<p>
+No
+</p>
+</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-0" transform="translate(57.34375, 77.2109375)"><rect class="basic label-container" style="" x="-49.34375" y="-27" width="98.6875" height="54"></rect><g class="label" style="" transform="translate(-19.34375, -12)"><rect></rect><foreignobject width="38.6875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Write
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-B-1" transform="translate(211.6875, 40.2109375)"><rect class="basic label-container" style="" x="-55" y="-27" width="110" height="54"></rect><g class="label" style="" transform="translate(-25, -12)"><rect></rect><foreignobject width="50" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Render
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-C-3" transform="translate(385.8984375, 77.2109375)"><polygon points="69.2109375,0 138.421875,-69.2109375 69.2109375,-138.421875 0,-69.2109375" class="label-container" transform="translate(-68.7109375, 69.2109375)"></polygon><g class="label" style="" transform="translate(-42.2109375, -12)"><rect></rect><foreignobject width="84.421875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Looks right?
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-D-5" transform="translate(583.3046875, 77.2109375)"><rect class="basic label-container" style="" x="-55.5390625" y="-27" width="111.078125" height="54"></rect><g class="label" style="" transform="translate(-25.5390625, -12)"><rect></rect><foreignobject width="51.078125" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Publish
+</p>
+</span>
+</div>
+</foreignobject></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<h3 id="footnotes">Footnotes</h3>
+<p>On this page, footnotes go at the end, Quarto’s default.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The <a href="./article.html">article</a> puts them in the margin.</p>
+
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This is a footnote.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main><footer class="site-footer"><div>Text and code under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>.</div><div>Built with <a href="https://quarto.org/">Quarto</a> and smol.</div></footer>
+
+
+
+
+</body></html>

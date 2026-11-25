@@ -1,0 +1,1 @@
+Sitemap: https://vuorre.com/smol-html/sitemap.xml

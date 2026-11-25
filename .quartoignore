@@ -1,7 +1,0 @@
-# Files `quarto use template` must not copy into a new project, so that
-# only template.qmd and the extension arrive. Quarto already skips
-# dotfiles, README.md, LICENSE, AGENTS.md, CLAUDE.md and _extensions.
-demo
-scripts
-Makefile
-PLAN.md

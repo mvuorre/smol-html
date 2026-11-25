@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>smol</title>
+<link>https://vuorre.com/smol-html/blog.html</link>
+<atom:link href="https://vuorre.com/smol-html/blog.xml" rel="self" type="application/rss+xml"/>
+<description>A listing of all posts, with an RSS feed.</description>
+<generator>quarto-1.11.9</generator>
+<lastBuildDate>Thu, 19 Nov 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Plain pages load fast</title>
+  <dc:creator>Ada Example</dc:creator>
+  <link>https://vuorre.com/smol-html/posts/plain-pages/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>A page of text needs very little to look good: a sensible font stack, a comfortable line length, enough spacing, and colours with good contrast.</p>
+<blockquote>
+<p>Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.</p>
+<p>— Antoine de Saint-Exupéry</p>
+</blockquote>
+
+
+ ]]></description>
+  <category>web</category>
+  <category>news</category>
+  <guid>https://vuorre.com/smol-html/posts/plain-pages/</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://vuorre.com/smol-html/posts/plain-pages/thumbnail.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Simple models first</title>
+  <dc:creator>Ben Sample</dc:creator>
+  <link>https://vuorre.com/smol-html/posts/simple-models/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Fit the simple model first:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1">fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(mpg <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> wt, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> mtcars)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coef</span>(fit)</span></code></pre></div>
+<p>Then ask what it misses. The model is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">mpg</mtext><mi>i</mi></msub><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mtext mathvariant="normal">wt</mtext><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\text{mpg}_i = \beta_0 + \beta_1 \text{wt}_i + \varepsilon_i</annotation></semantics></math>.</p>
+
+
+ ]]></description>
+  <category>statistics</category>
+  <category>R</category>
+  <guid>https://vuorre.com/smol-html/posts/simple-models/</guid>
+  <pubDate>Wed, 14 Oct 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://vuorre.com/smol-html/posts/simple-models/thumbnail.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Welcome to the blog</title>
+  <dc:creator>Ada Example</dc:creator>
+  <link>https://vuorre.com/smol-html/posts/welcome/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is the first post. It has a title, a description, an author, a date, a category and an image. Listings show some of these, and the post’s title block shows others.</p>
+<h2 id="a-section">A section</h2>
+<p>A paragraph with a <a href="../../article.html">link</a> and a footnote.<sup>1</sup></p>
+
+<section id="footnotes" class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="fn1"><p>A footnote in a post.↩︎</p></li>
+</ol>
+</section>
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://vuorre.com/smol-html/posts/welcome/</guid>
+  <pubDate>Mon, 31 Aug 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://vuorre.com/smol-html/posts/welcome/thumbnail.svg" medium="image" type="image/svg+xml"/>
+</item>
+</channel>
+</rss>

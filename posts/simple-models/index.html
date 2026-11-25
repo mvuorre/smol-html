@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ben Sample">
+<meta name="dcterms.date" content="2026-10-15">
+<meta name="description" content="Start with the simplest model that could work, then add what the data demands.">
+
+<title>Simple models first – smol</title>
+<style>
+</style>
+
+
+
+
+<link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/smol/smol.css">
+<meta property="og:title" content="Simple models first – smol">
+<meta property="og:description" content="Start with the simplest model that could work, then add what the data demands.">
+<meta property="og:image" content="https://vuorre.com/smol-html/posts/simple-models/thumbnail.svg">
+<meta property="og:site_name" content="smol">
+</head>
+
+<body>
+
+<header class="site-header"><nav class="site-nav" aria-label="Site"><a class="site-title" href="../../index.html">smol</a><ul class="nav-left"><li><a href="../../article.html">Article</a></li><li><a href="../../blog.html">Blog</a></li><li><details><summary>More</summary><ul><li><a href="../../listings.html">Listings</a></li><li><a href="../../about.html">About</a></li></ul></details></li></ul><ul class="nav-right"><li><a href="https://github.com/mvuorre/smol-html">GitHub</a></li></ul></nav></header><main class="content" id="quarto-content">
+
+<header id="title-block-header" class="quarto-title-block">
+<h1 class="title">Simple models first</h1>
+<p class="subtitle">Why the linear model is a good start</p>
+<div class="description">Start with the simplest model that could work, then add what the data demands.</div>
+<p class="authors">
+<span class="author">Ben Sample</span></p>
+<p class="dates"><span class="date">2026-10-15</span></p>
+<p class="categories"><span class="category">statistics</span><span class="category">R</span></p>
+<div class="abstract">
+<div class="abstract-title">Abstract</div>
+<p>Posts can have an abstract as well as a description. The description shows in listings, feeds and social previews; the abstract shows under the title.</p>
+</div>
+</header>
+
+
+<p>Fit the simple model first:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit)</span></code></pre></div>
+<p>Then ask what it misses. The model is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">mpg</mtext><mi>i</mi></msub><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mtext mathvariant="normal">wt</mtext><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\text{mpg}_i = \beta_0 + \beta_1 \text{wt}_i + \varepsilon_i</annotation></semantics></math>.</p>
+
+
+</main><footer class="site-footer"><div>Text and code under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>.</div><div>Built with <a href="https://quarto.org/">Quarto</a> and smol.</div></footer>
+
+
+
+
+</body></html>

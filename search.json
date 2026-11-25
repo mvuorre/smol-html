@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome to the blog",
+    "section": "",
+    "text": "This is the first post. It has a title, a description, an author, a date, a category and an image. Listings show some of these, and the post’s title block shows others.\nA paragraph with a link and a footnote.1"
+  },
+  {
+    "objectID": "posts/welcome/index.html#footnotes",
+    "href": "posts/welcome/index.html#footnotes",
+    "title": "Welcome to the blog",
+    "section": "",
+    "text": "A footnote in a post.↩︎"
+  },
+  {
+    "objectID": "posts/plain-pages/index.html",
+    "href": "posts/plain-pages/index.html",
+    "title": "Plain pages load fast",
+    "section": "",
+    "text": "A page of text needs very little to look good: a sensible font stack, a comfortable line length, enough spacing, and colours with good contrast.\n\nPerfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.\n— Antoine de Saint-Exupéry"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "smol",
+    "section": "",
+    "text": "smol makes Quarto websites and documents without Bootstrap, Quarto’s JavaScript or icon fonts. Listings, RSS, citations, cross-references, callouts and margin notes still work. This site is built with it.\nWhat each page downloads: HTML, CSS and JavaScript (gzipped), and fonts. Normal Quarto runs 105 KB of JavaScript on a plain blog post; smol runs none. Quarto still adds a small script for a few features: listings (9 KB), and keyboard keys and Mermaid diagrams (under 1 KB each). Measured on this site’s pages with Quarto 1.11.9. With normal Quarto, pages with math also download MathJax’s fonts, which aren’t counted.\nInstall the extension in your project’s folder:\nThen switch a site, or a single document, with one line:\nWhat smol does with ordinary Quarto content, with Quarto’s default options. Pages are light or dark following the reader’s system setting; there’s no toggle. The article shows scholarly front matter, citations and the margin.\nBody text should be easy to read for a long time. This paragraph has bold, italic, struck out, small caps, H2O, E = mc2, inline code, a link to another page, an external link and a link to a heading. Keyboard keys: Ctrl-Shift-PCtrl-Shift-P.\nA second paragraph shows how paragraphs follow each other. Long words and URLs must wrap instead of widening the page: Donaudampfschifffahrtsgesellschaftskapitänswitwe, https://example.org/a/very/long/url/that/goes/on/and/on/without/any/natural/place/to/break/it.\nA long line scrolls inside its block:\nThese blocks copy the markup Quarto writes for executed code cells, so the demo needs no R or Python. The page sets code-fold: show.\nCode\nx &lt;- c(4, 8, 15, 16, 23, 42)\nsummary(x)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.\n   4.00    9.75   15.50   18.00   21.25   42.00\nCode\nwarning(\"This is a warning\")\n\n\nWarning: This is a warning\nInline math sits in the line: the sample mean x‾=1n∑i=1nxi\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i estimates μ\\mu. A numbered equation, referenced as Equation 1:\nf(x)=1σ2πexp⁡(−(x−μ)22σ2)(1)\nf(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\n \\qquad(1)\n(a+b)2=(a+b)(a+b)=a2+2ab+b2\n\\begin{aligned}\n(a + b)^2 &= (a + b)(a + b) \\\\\n          &= a^2 + 2ab + b^2\n\\end{aligned}\nA long equation scrolls instead of widening the page:\nlog⁡p(𝒚∣𝜽)=∑i=1n[yiloglogit⁡−1(ηi)+(1−yi)log(1−logit⁡−1(ηi))]+∑j=1Jlog⁡𝒩(θj∣0,τ2)\n\\log p(\\mathbf{y} \\mid \\boldsymbol{\\theta}) = \\sum_{i=1}^{n} \\left[ y_i \\log \\operatorname{logit}^{-1}(\\eta_i) + (1 - y_i) \\log\\left(1 - \\operatorname{logit}^{-1}(\\eta_i)\\right) \\right] + \\sum_{j=1}^{J} \\log \\mathcal{N}(\\theta_j \\mid 0, \\tau^2)\nA wide table scrolls:\nsmol’s callouts show their type with colour and title, without icons.\nWithout JavaScript, tabsets show their tabs one after another:\nsmol draws Mermaid diagrams when rendering and includes them as SVG, so the page loads no Mermaid JavaScript.\nYes\n\n\n\n\n\n\n\nNo\n\n\n\n\n\n\n\nWrite\n\n\n\n\n\n\n\nRender\n\n\n\n\n\n\n\nLooks right?\n\n\n\n\n\n\n\nPublish\nOn this page, footnotes go at the end, Quarto’s default.1 The article puts them in the margin."
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "smol",
+    "section": "",
+    "text": "This is a footnote.↩︎"
+  },
+  {
+    "objectID": "article.html",
+    "href": "article.html",
+    "title": "Small pages for scholarly writing",
+    "section": "",
+    "text": "Introduction\nLiterate programming mixes code and prose (Knuth 1984). Cohen (1994) criticised significance testing, and others argued for looking at the data first (Tukey 1977; Tufte 2001, 13).\n\nA margin note. On phones it sits below the paragraph it belongs to.\n\nThis article sets reference-location: margin, so footnotes go in the margin next to the text that refers to them.1 An aside can be written inline. An aside, written inline in the paragraph.\n\n1. A footnote in the margin.\n\nMethods\nWe model the outcome as a straight line plus noise, Equation 1:\nyi=β0+β1xi+εi,εi∼𝒩(0,σ2)(1)\ny_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i, \\quad \\varepsilon_i \\sim \\mathcal{N}(0, \\sigma^2)\n \\qquad(1)\nTheorem 1 bounds the mean.\n\nTheorem 1 (Arithmetic and geometric means) For non-negative numbers aa and bb, a+b2≥ab\\frac{a + b}{2} \\geq \\sqrt{ab}.\n\n\nProof. (a−b)2≥0(\\sqrt{a} - \\sqrt{b})^2 \\geq 0. Expand and rearrange.\n\nResults\nFigure 1 has its caption in the margin, because the article sets cap-location: margin. Table 1 summarises it.\n\n\n\n\n\n\nFigure 1: Counts in four groups.\n\n\n\n\n\n\n\n\n\nGroup\nCount\nShare\n\n\n\n\nA\n90\n0.18\n\n\nB\n140\n0.28\n\n\nC\n180\n0.36\n\n\nD\n90\n0.18\n\n\n\n\n\nTable 1: Counts in each group.\n\n\n\n\n\n\n\nA figure as wide as the page.\n\n\n\n\n\n\n\nA figure as wide as the screen.\n\n\n\nDiscussion\nSmall pages load fast, and fast pages get read.2\n\n2. A second footnote, to show how notes follow each other in the margin.\n\n\n\nNote 1: Limitations\n\nA callout that can be cross-referenced, as Note 1.\n\nReferences\n\n\nCohen, Jacob. 1994. “The Earth Is Round (p&lt;.05p &lt; .05).” American Psychologist 49 (12): 997–1003. https://doi.org/10.1037/0003-066X.49.12.997.\n\n\nKnuth, Donald E. 1984. “Literate Programming.” The Computer Journal 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nTufte, Edward R. 2001. The Visual Display of Quantitative Information. 2nd ed. Graphics Press.\n\n\nTukey, John W. 1977. Exploratory Data Analysis. Addison-Wesley."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This page uses one of Quarto’s about-page templates (jolla). It tests what happens to them without Bootstrap."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Plain pages load fast\n\n\n\nweb\n\nnews\n\n\n\n\nMost of a typical page’s weight is CSS and JavaScript that the text doesn’t need.\n\n\n\n\n\n\n2026-11-20\n\n\nAda Example\n\n\n\n\n\n\n\n\n\n\n\n\nSimple models first\n\n\nWhy the linear model is a good start\n\n\n\nstatistics\n\nR\n\n\n\n\nStart with the simplest model that could work, then add what the data demands.\n\n\n\n\n\n\n2026-10-15\n\n\nBen Sample\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to the blog\n\n\n\nnews\n\n\n\n\nThe first post, with a description that shows in listings, feeds and social previews.\n\n\n\n\n\n\n2026-09-01\n\n\nAda Example\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "listings.html",
+    "href": "listings.html",
+    "title": "Listings",
+    "section": "",
+    "text": "Grid\n\n\n\n\n\n\n\n\n\n\nPlain pages load fast\n\n\nMost of a typical page’s weight is CSS and JavaScript that the text doesn’t need.\n\n\n\nAda Example\n\n\n2026-11-20\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimple models first\n\n\nStart with the simplest model that could work, then add what the data demands.\n\n\n\nBen Sample\n\n\n2026-10-15\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to the blog\n\n\nThe first post, with a description that shows in listings, feeds and social previews.\n\n\n\nAda Example\n\n\n2026-09-01\n\n\n\n\n\n\nNo matching items\n\nTable\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\nCategories\n\n\n\n\n\n\n\n\n2026-11-20\n\n\nPlain pages load fast\n\n\nAda Example\n\n\nweb, news\n\n\n\n\n\n\n2026-10-15\n\n\nSimple models first\n\n\nBen Sample\n\n\nstatistics, R\n\n\n\n\n\n\n2026-09-01\n\n\nWelcome to the blog\n\n\nAda Example\n\n\nnews\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/simple-models/index.html",
+    "href": "posts/simple-models/index.html",
+    "title": "Simple models first",
+    "section": "",
+    "text": "Fit the simple model first:\nfit &lt;- lm(mpg ~ wt, data = mtcars)\ncoef(fit)\nThen ask what it misses. The model is mpgi=β0+β1wti+εi\\text{mpg}_i = \\beta_0 + \\beta_1 \\text{wt}_i + \\varepsilon_i."
+  }
+]
