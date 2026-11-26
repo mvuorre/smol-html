@@ -15,6 +15,7 @@
 </style>
 
 
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 
 
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/smol/smol.css">
@@ -33,7 +34,8 @@
 <p class="subtitle">Why the linear model is a good start</p>
 <div class="description">Start with the simplest model that could work, then add what the data demands.</div>
 <p class="authors">
-<span class="author">Ben Sample</span></p>
+<span class="author">Ben Sample</span>
+</p>
 <p class="dates"><span class="date">2026-10-15</span></p>
 <p class="categories"><span class="category">statistics</span><span class="category">R</span></p>
 <div class="abstract">
@@ -42,13 +44,54 @@
 </div>
 </header>
 
-
+<nav id="TOC" role="doc-toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-it-misses" id="toc-what-it-misses">What it misses</a></li>
+  </ul>
+</nav>
 <p>Fit the simple model first:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit)</span></code></pre></div>
-<p>Then ask what it misses. The model is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">mpg</mtext><mi>i</mi></msub><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mtext mathvariant="normal">wt</mtext><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\text{mpg}_i = \beta_0 + \beta_1 \text{wt}_i + \varepsilon_i</annotation></semantics></math>.</p>
+<h2 id="what-it-misses" class="anchored">What it misses</h2>
+<p>Ask what the simple model misses. The model is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">mpg</mtext><mi>i</mi></msub><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mtext mathvariant="normal">wt</mtext><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\text{mpg}_i = \beta_0 + \beta_1 \text{wt}_i + \varepsilon_i</annotation></semantics></math>.</p>
 
 
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/vuorre\.com\/smol-html\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+  });
+  </script>
 </main><footer class="site-footer"><div>Text and code under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>.</div><div>Built with <a href="https://quarto.org/">Quarto</a> and smol.</div></footer>
 
 

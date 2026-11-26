@@ -68,6 +68,18 @@ main { padding-block: 2rem 3rem; }
     width: var(--side);
     margin-right: calc(-1 * (var(--gap) + var(--side)));
   }
+  /* Quarto puts a margin caption after its figure or table. Floating the
+     content too lets the caption float level with its top, while it still
+     stacks below earlier margin notes instead of overlapping them. */
+  .margin-caption > figure > div {
+    float: left;
+    width: 100%;
+  }
+  .margin-caption > figure::after {
+    content: "";
+    display: block;
+    clear: left;
+  }
   .column-page {
     clear: right;
     margin-right: calc(-1 * (var(--gap) + var(--side)));
@@ -138,6 +150,7 @@ h1.title {
 #title-block-header .description p { margin: 0; }
 
 #title-block-header .authors { margin-top: 1.25rem; color: var(--text); }
+.author { display: block; }
 
 .orcid svg {
   width: 1em;
@@ -493,6 +506,10 @@ figure > p { margin: 0; }
 
 img, svg, video, iframe { max-width: 100%; height: auto; }
 
+/* Embedded videos. Quarto's fallback for Bootstrap's .ratio lacks this
+   spacer, so without it videos have no height and vanish. */
+.ratio::before { content: ""; display: block; padding-top: var(--bs-aspect-ratio); }
+
 .quarto-figure-center > figure > div,
 .quarto-figure-center > figure > p { text-align: center; }
 
@@ -524,6 +541,28 @@ figcaption {
 
 div.columns { display: flex; gap: 1.5rem; }
 div.column { flex: auto; min-width: 0; }
+
+/* Quarto's CSS grid (::: grid with .g-col-N children), which Bootstrap
+   provides in normal Quarto. Responsive classes like .g-col-md-6 aren't
+   supported; their items stack. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.grid > * { grid-column: 1 / -1; }
+.grid > * > :first-child { margin-top: 0; }
+.g-col-1 { grid-column: auto / span 1; }
+.g-col-2 { grid-column: auto / span 2; }
+.g-col-3 { grid-column: auto / span 3; }
+.g-col-4 { grid-column: auto / span 4; }
+.g-col-5 { grid-column: auto / span 5; }
+.g-col-6 { grid-column: auto / span 6; }
+.g-col-7 { grid-column: auto / span 7; }
+.g-col-8 { grid-column: auto / span 8; }
+.g-col-9 { grid-column: auto / span 9; }
+.g-col-10 { grid-column: auto / span 10; }
+.g-col-11 { grid-column: auto / span 11; }
 
 @media (max-width: 30rem) {
   .quarto-layout-row, div.columns { flex-direction: column; }
@@ -587,15 +626,33 @@ td > :last-child, th > :last-child { margin-bottom: 0; }
 .callout-title + * { margin-top: 0.35rem; }
 .callout summary { cursor: pointer; }
 
-.panel-tabset .tab + .tab { margin-top: 1.25rem; }
-.tab-title {
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.panel-tabset {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
 }
-.tab-title + * { margin-top: 0.35rem; }
+
+.panel-tabset > label {
+  position: relative; /* its underline over the panel's top rule */
+  margin-bottom: -1px;
+  padding: 0.25rem 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.panel-tabset > :checked + label { border-color: var(--accent); color: var(--text); }
+.panel-tabset > :focus-visible + label { outline: 2px solid var(--accent); }
+
+.panel-tabset > .tab {
+  display: none;
+  order: 1; /* every panel after every label */
+  width: 100%;
+  border-top: 1px solid var(--line);
+}
+
+.panel-tabset > :checked + label + .tab { display: block; }
 
 /* Theorems, footnotes, references ---------------------------------------- */
 
@@ -623,9 +680,20 @@ a.footnote-back { text-decoration: none; }
 .csl-left-margin { float: left; min-width: 2em; }
 .csl-right-inline { margin-left: 2em; }
 
-/* Listings --------------------------------------------------------------- */
+/* Bootstrap classes ------------------------------------------------------ */
 
-.listing-no-matching { display: none; } /* Bootstrap's d-none used to hide it */
+/* Quarto's markup and scripts use these, and so do many listing templates.
+   The listing script shows "No matching items" by removing d-none. */
+.d-none { display: none !important; }
+.small { font-size: 0.875em; }
+.text-muted { color: var(--muted); }
+
+/* Sites that turn on anchor-sections get Quarto's anchor script, whose
+   icon is a character from Bootstrap's icon font. */
+.anchorjs-link { color: var(--muted); }
+.anchorjs-link::after { content: "#"; }
+
+/* Listings --------------------------------------------------------------- */
 
 .quarto-post {
   display: grid;
@@ -670,7 +738,12 @@ a.footnote-back { text-decoration: none; }
 
 .listing-description p { margin: 0.25rem 0 0; }
 
-.listing-categories {
+.listing-date { white-space: nowrap; }
+
+/* Category pills, in Quarto's own listing templates and the title block.
+   Custom templates keep their own markup. */
+.quarto-post .listing-categories,
+.quarto-grid-item .listing-categories {
   display: flex;
   flex-wrap: wrap;
   order: 1;
@@ -678,7 +751,8 @@ a.footnote-back { text-decoration: none; }
   margin-top: 0.6rem;
 }
 
-.listing-category,
+.quarto-post .listing-category,
+.quarto-grid-item .listing-category,
 .category {
   padding: 0 0.5rem;
   border: 1px solid var(--line);
@@ -732,6 +806,27 @@ a.footnote-back { text-decoration: none; }
 }
 
 .input-group-text { display: none; } /* empty without Bootstrap's icon font */
+
+/* Page links, which the listing script adds with page-size. */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.page-link {
+  display: block;
+  min-width: 1.5em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.page-item.active .page-link { background: var(--soft); color: var(--text); }
+.page-item.disabled .page-link { color: var(--muted); pointer-events: none; }
 
 select, input[type="text"] {
   padding: 0.3rem 0.6rem;

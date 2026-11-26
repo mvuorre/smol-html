@@ -30,16 +30,16 @@
 
 <header id="title-block-header" class="quarto-title-block">
 <h1 class="title">smol</h1>
-<p class="subtitle">A small, fast HTML format for Quarto</p>
-<div class="description">smol is a Quarto HTML format without Bootstrap, Quarto’s JavaScript or icon fonts.</div>
 </header>
 
 <nav id="TOC" role="doc-toc" aria-labelledby="toc-title">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#smaller-pages" id="toc-smaller-pages">Smaller pages</a></li>
-  <li><a href="#use-it" id="toc-use-it">Use it</a></li>
+  <li><a href="#use" id="toc-use">Use</a></li>
+  <li><a href="#what-works" id="toc-what-works">What works</a></li>
+  <li><a href="#what-doesnt" id="toc-what-doesnt">What doesn’t</a></li>
+  <li><a href="#good-to-know" id="toc-good-to-know">Good to know</a></li>
   <li><a href="#features" id="toc-features">Features</a>
   <ul>
   <li><a href="#text" id="toc-text">Text</a></li>
@@ -51,52 +51,46 @@
   <li><a href="#diagrams" id="toc-diagrams">Diagrams</a></li>
   <li><a href="#footnotes" id="toc-footnotes">Footnotes</a></li>
   </ul></li>
+  <li><a href="#size-and-speed" id="toc-size-and-speed">Size and speed</a></li>
   </ul>
 </nav>
-<p>smol makes Quarto websites and documents without Bootstrap, Quarto’s JavaScript or icon fonts. Listings, RSS, citations, cross-references, callouts and margin notes still work. This site is built with it.</p>
-<h2 id="smaller-pages">Smaller pages</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 48%">
-<col style="width: 26%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Page</th>
-<th style="text-align: right;">Normal Quarto</th>
-<th style="text-align: right;">smol</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Home page, with code, math and a diagram</td>
-<td style="text-align: right;">1.4 MB in 26 files</td>
-<td style="text-align: right;">16 KB in 5 files</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Article with math and citations</td>
-<td style="text-align: right;">612 KB in 21 files</td>
-<td style="text-align: right;">9.2 KB in 2 files</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Blog page with a listing</td>
-<td style="text-align: right;">617 KB in 23 files</td>
-<td style="text-align: right;">16 KB in 4 files</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Blog post</td>
-<td style="text-align: right;">365 KB in 19 files</td>
-<td style="text-align: right;">6.3 KB in 2 files</td>
-</tr>
-</tbody>
-</table>
-<p>What each page downloads: HTML, CSS and JavaScript (gzipped), and fonts. Normal Quarto runs 105 KB of JavaScript on a plain blog post; smol runs none. Quarto still adds a small script for a few features: listings (9 KB), and keyboard keys and Mermaid diagrams (under 1 KB each). Measured on this site’s pages with Quarto 1.11.9. With normal Quarto, pages with math also download MathJax’s fonts, which aren’t counted.</p>
-<h2 id="use-it">Use it</h2>
+<p>A small, fast HTML format for Quarto websites and documents. It leaves out Bootstrap, Quarto’s JavaScript and icon fonts, and keeps listings, RSS, citations, cross-references, callouts and margin notes. Pages are many times smaller, and show their content sooner on a phone.</p>
+<h2 id="use">Use</h2>
 <p>Install the extension in your project’s folder:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add mvuorre/smol-html</span></code></pre></div>
-<p>Then switch a site, or a single document, with one line:</p>
+<p>Then set the format in a website’s <code>_quarto.yml</code>, or in a document’s front matter:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> smol-html</span></span></code></pre></div>
+<p>smol reads Quarto’s usual options, such as <code>website.navbar</code>, <code>page-footer</code>, <code>toc</code> and the callout options. Switching an existing site can take two more changes:</p>
+<ul>
+<li>Remove <code>theme:</code>, which brings Bootstrap back. Theme options such as <code>mainfont</code> and <code>monofont</code> do nothing in smol, and neither does <code>highlight-style</code>: smol has its own fonts and code colours.</li>
+<li>A page that sets its own options under <code>format: html:</code> still renders with normal Quarto. Rename that key to <code>smol-html:</code>, or move the options to the top level of the front matter.</li>
+</ul>
+<h2 id="what-works">What works</h2>
+<ul>
+<li>Websites and blogs: a navbar as one line of links, with menus; the page footer; listings (default, grid, table and custom templates, with sorting, filtering and page links); RSS feeds with whole posts; the sitemap; Open Graph tags; 404 pages; giscus comments.</li>
+<li>Documents: the title block with authors, affiliations, ORCID iDs, dates, DOI, license, abstract and keywords; a table of contents in the margin; code with highlighting, folding, file names and annotations; math as MathML; figures, tables, theorems and cross-references, with captions below or in the margin; callouts; tabsets, which switch without JavaScript; footnotes and notes in the margin; citations; Mermaid diagrams; Quarto’s CSS grid; embedded videos; <code>embed-resources: true</code>.</li>
+<li>Pages follow the reader’s light or dark setting.</li>
+<li>With <code>google-scholar: true</code>, reference managers such as Zotero save a page with its authors, date, DOI and journal.</li>
+</ul>
+<h2 id="what-doesnt">What doesn’t</h2>
+<ul>
+<li>Search, sidebars, page navigation and breadcrumbs.</li>
+<li>The category list beside listings. Category links in posts still filter a listing.</li>
+<li>The appendix with the license and citation. The license shows in the title block, as text.</li>
+<li>The layout of about-page templates. Their text stays.</li>
+<li>Tabsets that share a <code>group</code> switch on their own, not together.</li>
+<li>Features that need JavaScript: copy buttons, hover previews for citations and footnotes, and a dark-mode toggle.</li>
+<li>Callout icons, <code>highlight-style</code>, responsive grid classes such as <code>.g-col-md-6</code> (their items stack), and the <code>-left</code>, <code>-right</code> and <code>-inset</code> column classes (they show at text width).</li>
+<li>Books, manuscripts and slides.</li>
+</ul>
+<h2 id="good-to-know">Good to know</h2>
+<ul>
+<li>Text uses the computer’s own sans-serif and monospace fonts, so pages download no fonts.</li>
+<li>Math is MathML, which the browser draws with the computer’s math font. Macs and Windows have one. On Linux, install one (for example STIX Two Math, Latin Modern Math or a TeX Gyre math font), or Greek and script letters in equations may not show.</li>
+<li>smol draws Mermaid diagrams when rendering and includes them as SVG, so pages don’t load Mermaid’s 770 KB of JavaScript. Rendering a page with a diagram therefore needs Chrome or Chromium, and takes a moment longer, also in <code>quarto preview</code>. If Quarto can’t find a browser, run <code>quarto install chrome-headless-shell</code>, or set <code>mermaid-format: js</code> to go back to Quarto’s default.</li>
+<li>Dates are ISO (2026-11-25). Set <code>date-format</code> for another format.</li>
+<li>Quarto still adds small scripts for some features: listings (9 KB), the <code>kbd</code> shortcode and Mermaid diagrams (under 1 KB each), and section links (3 KB) on sites that turn <code>anchor-sections</code> on. smol can’t turn off the listing script.</li>
+</ul>
 <h2 id="features">Features</h2>
 <p>What smol does with ordinary Quarto content, with Quarto’s default options. Pages are light or dark following the reader’s system setting; there’s no toggle. The <a href="./article.html">article</a> shows scholarly front matter, citations and the margin.</p>
 <h3 id="text">Text</h3>
@@ -418,18 +412,26 @@ Simple appearance
 <p>And a wide one, 60% wide.</p>
 </div>
 </div>
-<p>Without JavaScript, tabsets show their tabs one after another:</p>
-<div class="panel-tabset">
-<div class="tab">
-<div class="tab-title">
-R
+<div class="grid">
+<div class="g-col-4">
+<p>Quarto’s CSS grid: a third of the width.</p>
 </div>
+<div class="g-col-8">
+<p>And two thirds. Pages use these <code>g-col-*</code> classes for side-by-side lists, such as jobs and degrees on a CV page.</p>
+</div>
+</div>
+<p>Tabsets switch without JavaScript, using CSS alone:</p>
+<div class="panel-tabset">
+<input type="radio" class="visually-hidden" name="tabset-1" id="tabset-1-1" checked=""><label for="tabset-1-1">
+R
+</label>
+<div class="tab">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 </div>
-<div class="tab">
-<div class="tab-title">
+<input type="radio" class="visually-hidden" name="tabset-1" id="tabset-1-2"><label for="tabset-1-2">
 Python
-</div>
+</label>
+<div class="tab">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>statistics.mean(x)</span></code></pre></div>
 </div>
 </div>
@@ -442,7 +444,7 @@ Python
 <div>
 <svg id="mermaid-figure-1" width="672" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="flowchart" viewbox="0 0 646.84375 154.421875" role="graphics-document document" aria-roledescription="flowchart-v2" height="480">
 <style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-figure-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span{color:#333;}#mermaid-figure-1 .cluster-label span p{background-color:transparent;}#mermaid-figure-1 .label text,#mermaid-figure-1 span{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .rough-node .label text,#mermaid-figure-1 .node .label text,#mermaid-figure-1 .image-shape .label,#mermaid-figure-1 .icon-shape .label{text-anchor:middle;}#mermaid-figure-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-1 .rough-node .label,#mermaid-figure-1 .node .label,#mermaid-figure-1 .image-shape .label,#mermaid-figure-1 .icon-shape .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 rect.text{fill:none;stroke-width:0;}#mermaid-figure-1 .icon-shape,#mermaid-figure-1 .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .icon-shape p,#mermaid-figure-1 .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#mermaid-figure-1 .icon-shape rect,#mermaid-figure-1 .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-figure-1 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker id="mermaid-1795612488241_flowchart-v2-pointEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795612488241_flowchart-v2-pointStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="4.5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795612488241_flowchart-v2-circleEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="11" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1795612488241_flowchart-v2-circleStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="-1" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1795612488241_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="12" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795612488241_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="-1" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M106.688,52.653L110.854,50.579C115.021,48.506,123.354,44.358,131.021,42.285C138.688,40.211,145.688,40.211,149.188,40.211L152.688,40.211" id="L_A_B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_A_B_0" data-points="W3sieCI6MTA2LjY4NzUsInkiOjUyLjY1MzE0MDEwNjEzNzAzfSx7IngiOjEzMS42ODc1LCJ5Ijo0MC4yMTA5Mzc1fSx7IngiOjE1Ni42ODc1LCJ5Ijo0MC4yMTA5Mzc1fV0=" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path><path d="M266.688,40.211L270.854,40.211C275.021,40.211,283.354,40.211,294.32,42.881C305.285,45.551,318.883,50.892,325.682,53.562L332.481,56.232" id="L_B_C_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_B_C_0" data-points="W3sieCI6MjY2LjY4NzUsInkiOjQwLjIxMDkzNzV9LHsieCI6MjkxLjY4NzUsInkiOjQwLjIxMDkzNzV9LHsieCI6MzM2LjIwNDIwMTM5OTIyNTk1LCJ5Ijo1Ny42OTQyMzYxMDA3NzQwNH1d" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path><path d="M455.109,77.211L461.164,77.211C467.219,77.211,479.328,77.211,490.771,77.211C502.214,77.211,512.99,77.211,518.378,77.211L523.766,77.211" id="L_C_D_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_D_0" data-points="W3sieCI6NDU1LjEwOTM3NSwieSI6NzcuMjEwOTM3NX0seyJ4Ijo0OTEuNDM3NSwieSI6NzcuMjEwOTM3NX0seyJ4Ijo1MjcuNzY1NjI1LCJ5Ijo3Ny4yMTA5Mzc1fV0=" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path><path d="M336.204,96.728L328.785,99.642C321.365,102.555,306.526,108.383,285.774,111.297C265.021,114.211,238.354,114.211,211.688,114.211C185.021,114.211,158.354,114.211,141.451,112.434C124.548,110.658,117.408,107.104,113.838,105.328L110.269,103.551" id="L_C_A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_A_0" data-points="W3sieCI6MzM2LjIwNDIwMTM5OTIyNTk1LCJ5Ijo5Ni43Mjc2Mzg4OTkyMjU5N30seyJ4IjoyOTEuNjg3NSwieSI6MTE0LjIxMDkzNzV9LHsieCI6MjExLjY4NzUsInkiOjExNC4yMTA5Mzc1fSx7IngiOjEzMS42ODc1LCJ5IjoxMTQuMjEwOTM3NX0seyJ4IjoxMDYuNjg3NSwieSI6MTAxLjc2ODczNDg5Mzg2Mjk3fV0=" marker-end="url(#mermaid-1795612488241_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_A_B_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<g><marker id="mermaid-1795697979069_flowchart-v2-pointEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795697979069_flowchart-v2-pointStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="4.5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795697979069_flowchart-v2-circleEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="11" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1795697979069_flowchart-v2-circleStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="-1" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1795697979069_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="12" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1795697979069_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="-1" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M106.688,52.653L110.854,50.579C115.021,48.506,123.354,44.358,131.021,42.285C138.688,40.211,145.688,40.211,149.188,40.211L152.688,40.211" id="L_A_B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_A_B_0" data-points="W3sieCI6MTA2LjY4NzUsInkiOjUyLjY1MzE0MDEwNjEzNzAzfSx7IngiOjEzMS42ODc1LCJ5Ijo0MC4yMTA5Mzc1fSx7IngiOjE1Ni42ODc1LCJ5Ijo0MC4yMTA5Mzc1fV0=" marker-end="url(#mermaid-1795697979069_flowchart-v2-pointEnd)"></path><path d="M266.688,40.211L270.854,40.211C275.021,40.211,283.354,40.211,294.32,42.881C305.285,45.551,318.883,50.892,325.682,53.562L332.481,56.232" id="L_B_C_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_B_C_0" data-points="W3sieCI6MjY2LjY4NzUsInkiOjQwLjIxMDkzNzV9LHsieCI6MjkxLjY4NzUsInkiOjQwLjIxMDkzNzV9LHsieCI6MzM2LjIwNDIwMTM5OTIyNTk1LCJ5Ijo1Ny42OTQyMzYxMDA3NzQwNH1d" marker-end="url(#mermaid-1795697979069_flowchart-v2-pointEnd)"></path><path d="M455.109,77.211L461.164,77.211C467.219,77.211,479.328,77.211,490.771,77.211C502.214,77.211,512.99,77.211,518.378,77.211L523.766,77.211" id="L_C_D_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_D_0" data-points="W3sieCI6NDU1LjEwOTM3NSwieSI6NzcuMjEwOTM3NX0seyJ4Ijo0OTEuNDM3NSwieSI6NzcuMjEwOTM3NX0seyJ4Ijo1MjcuNzY1NjI1LCJ5Ijo3Ny4yMTA5Mzc1fV0=" marker-end="url(#mermaid-1795697979069_flowchart-v2-pointEnd)"></path><path d="M336.204,96.728L328.785,99.642C321.365,102.555,306.526,108.383,285.774,111.297C265.021,114.211,238.354,114.211,211.688,114.211C185.021,114.211,158.354,114.211,141.451,112.434C124.548,110.658,117.408,107.104,113.838,105.328L110.269,103.551" id="L_C_A_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_A_0" data-points="W3sieCI6MzM2LjIwNDIwMTM5OTIyNTk1LCJ5Ijo5Ni43Mjc2Mzg4OTkyMjU5N30seyJ4IjoyOTEuNjg3NSwieSI6MTE0LjIxMDkzNzV9LHsieCI6MjExLjY4NzUsInkiOjExNC4yMTA5Mzc1fSx7IngiOjEzMS42ODc1LCJ5IjoxMTQuMjEwOTM3NX0seyJ4IjoxMDYuNjg3NSwieSI6MTAxLjc2ODczNDg5Mzg2Mjk3fV0=" marker-end="url(#mermaid-1795697979069_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_A_B_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
 <div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
 <span class="edgeLabel"></span>
 </div>
@@ -507,6 +509,44 @@ Publish
 </div>
 <h3 id="footnotes">Footnotes</h3>
 <p>On this page, footnotes go at the end, Quarto’s default.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The <a href="./article.html">article</a> puts them in the margin.</p>
+<h2 id="size-and-speed">Size and speed</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 26%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Page</th>
+<th style="text-align: right;">Normal Quarto</th>
+<th style="text-align: right;">smol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Home page, with code, math and a diagram</td>
+<td style="text-align: right;">1.4 MB (6.4 s)</td>
+<td style="text-align: right;">17 KB (0.9 s)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Article with math and citations</td>
+<td style="text-align: right;">612 KB (2.3 s)</td>
+<td style="text-align: right;">10 KB (0.8 s)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Blog page with a listing</td>
+<td style="text-align: right;">617 KB (3.7 s)</td>
+<td style="text-align: right;">17 KB (1.1 s)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Blog post</td>
+<td style="text-align: right;">365 KB (2.3 s)</td>
+<td style="text-align: right;">7.2 KB (0.8 s)</td>
+</tr>
+</tbody>
+</table>
+<p>Each cell is what the page downloads, then how long it takes to show its main content. Downloads are HTML, CSS and JavaScript (gzipped), and fonts, measured with Quarto 1.11.9. With normal Quarto, pages with math also download MathJax’s fonts, which aren’t counted. Times are to the largest contentful paint on a mid-range phone with slow 4G, from Lighthouse 13’s mobile settings (as in PageSpeed Insights), median of three runs, measured on 2026-11-25. Lighthouse rates every smol page 100 for performance. Normal Quarto runs 105 KB of JavaScript on a plain blog post; smol runs none.</p>
 
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

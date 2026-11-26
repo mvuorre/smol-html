@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="The same posts as a grid and as a table.">
+<meta name="description" content="The same posts as a grid, as a table, and with a custom template.">
 
 <title>Listings – smol</title>
 <style>
@@ -59,12 +59,35 @@
       window['quarto-listing-loaded']();
     }
   });
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-custom .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-bibliography','listing-toc','listing-engines','listing-format','listing-language','listing-title','listing-description','listing-author','listing-date','listing-categories','listing-image','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-subtitle','listing-anchor-sections','listing-abstract',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      page: 2,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-project","listing-website","listing-bibliography","listing-toc","listing-engines","listing-format","listing-language","listing-title","listing-description","listing-author","listing-date","listing-categories","listing-image","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-subtitle","listing-anchor-sections","listing-abstract"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-custom'] = new List('listing-custom', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
   </script>
 
 
 <link rel="stylesheet" href="site_libs/quarto-contrib/quarto-project/smol/smol.css">
 <meta property="og:title" content="Listings – smol">
-<meta property="og:description" content="The same posts as a grid and as a table.">
+<meta property="og:description" content="The same posts as a grid, as a table, and with a custom template.">
 <meta property="og:image" content="https://vuorre.com/smol-html/posts/plain-pages/thumbnail.svg">
 <meta property="og:site_name" content="smol">
 </head>
@@ -75,7 +98,7 @@
 
 <header id="title-block-header" class="quarto-title-block">
 <h1 class="title">Listings</h1>
-<div class="description">The same posts as a grid and as a table.</div>
+<div class="description">The same posts as a grid, as a table, and with a custom template.</div>
 </header>
 
 
@@ -106,7 +129,7 @@ Ada Example
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="c3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1792015200000" data-listing-file-modified-sort="1795612485726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28">
+<div class="g-col-1" data-index="1" data-categories="c3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1792015200000" data-listing-file-modified-sort="1795614053282" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
 <a href="./posts/simple-models/index.html" class="quarto-grid-link no-external-icon">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -224,7 +247,7 @@ Categories
 
 </tr>
 
-<tr data-index="1" data-categories="c3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1792015200000" data-listing-file-modified-sort="1795612485726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28" data-listing-title-sort="Simple models first" data-listing-filename-sort="index.qmd">
+<tr data-index="1" data-categories="c3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1792015200000" data-listing-file-modified-sort="1795614053282" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29" data-listing-title-sort="Simple models first" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">2026-10-15</span>
 </td>
@@ -259,6 +282,50 @@ Categories
 </tbody>
 </table>
 <div class="listing-no-matching d-none">No matching items</div>
+</div>
+<h2 id="custom-template">Custom template</h2>
+<p>A template of our own, like many sites have, using Bootstrap’s <code>small</code> and <code>text-muted</code> classes. It shows two posts per page.</p>
+<div id="listing-custom" class="quarto-listing quarto-listing-container-custom">
+<ul class="list">
+
+  <li data-index="0" data-categories="d2ViJTJDbmV3cw==" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795612485726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="49">
+    <a href="./posts/plain-pages/index.html">Plain pages load fast</a>
+    <span class="listing-date small text-muted">2026-11-20</span>
+    <div class="small">
+      Most of a typical page's weight is CSS and JavaScript that the text doesn't need.
+      
+      <span class="listing-categories text-muted">· <span class="listing-category">web</span>, <span class="listing-category">news</span></span>
+      
+    </div>
+  </li>
+
+  <li data-index="1" data-categories="c3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1792015200000" data-listing-file-modified-sort="1795614053282" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
+    <a href="./posts/simple-models/index.html">Simple models first</a>
+    <span class="listing-date small text-muted">2026-10-15</span>
+    <div class="small">
+      Start with the simplest model that could work, then add what the data demands.
+      
+      <span class="listing-categories text-muted">· <span class="listing-category">statistics</span>, <span class="listing-category">R</span></span>
+      
+    </div>
+  </li>
+
+  <li data-index="2" data-categories="bmV3cw==" data-listing-date-sort="1788213600000" data-listing-file-modified-sort="1795612485726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43">
+    <a href="./posts/welcome/index.html">Welcome to the blog</a>
+    <span class="listing-date small text-muted">2026-09-01</span>
+    <div class="small">
+      The first post, with a description that shows in listings, feeds and social previews.
+      
+      <span class="listing-categories text-muted">· <span class="listing-category">news</span></span>
+      
+    </div>
+  </li>
+
+</ul>
+<div class="listing-no-matching d-none">No matching items</div>
+<nav id="custom-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div>
 
 
