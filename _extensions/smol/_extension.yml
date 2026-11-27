@@ -1,0 +1,17 @@
+title: smol
+author: Matti Vuorre
+version: 0.1.0
+quarto-required: ">=1.11.0"
+contributes:
+  formats:
+    html:
+      minimal: true
+      html-math-method: mathml
+      mermaid-format: svg
+      css: smol.css
+      template-partials:
+        - styles.html
+        - title-block.html
+      date-format: iso
+      filters:
+        - smol.lua

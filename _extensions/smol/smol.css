@@ -1,0 +1,734 @@
+/* smol's stylesheet. Colours follow the reader's light or dark setting. */
+
+:root {
+  color-scheme: light dark;
+  --text: light-dark(#1f2328, #e3e6ea);
+  --muted: light-dark(#59636e, #9ba3ad);
+  --bg: light-dark(#fff, #15171b);
+  --soft: light-dark(#f5f6f8, #1d2025);
+  --line: light-dark(#d8dde3, #343941);
+  --accent: light-dark(#0b57d0, #8ab4f8);
+  --sans: system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  /* MathML needs a math font, or letters like Greek ones don't show. */
+  --math: "STIX Two Math", "Cambria Math", "Latin Modern Math", "STIX Math", "TeX Gyre DejaVu Math", math;
+  --body: 40rem; /* text column */
+  --gap: 3rem;   /* between the text and the margin */
+  --side: 15rem; /* margin column */
+  --frame: calc(var(--body) + 2rem); /* header and main width */
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font: 1.0625rem/1.5 var(--sans);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-wrap: break-word;
+  overflow-x: clip; /* .column-screen is 100vw, which counts the scrollbar */
+}
+
+/* Layout ---------------------------------------------------------------- */
+
+main,
+.site-header {
+  box-sizing: border-box;
+  max-width: var(--frame);
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+main { padding-block: 2rem 3rem; }
+
+.column-screen {
+  clear: both;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Wide screens: margin content floats right, as in Tufte CSS. */
+@media (min-width: 56rem) {
+  :root { --frame: calc(var(--body) + var(--gap) + var(--side) + 2rem); }
+  main { padding-right: calc(var(--gap) + var(--side) + 1rem); }
+  #TOC,
+  .column-margin,
+  .quarto-float-caption-margin {
+    float: right;
+    clear: right;
+    width: var(--side);
+    margin-right: calc(-1 * (var(--gap) + var(--side)));
+  }
+  /* Float the content too, so its margin caption (after it) lines up with its top. */
+  .margin-caption > figure > div {
+    float: left;
+    width: 100%;
+  }
+  .margin-caption > figure::after {
+    content: "";
+    display: block;
+    clear: left;
+  }
+  .column-page {
+    clear: right;
+    margin-right: calc(-1 * (var(--gap) + var(--side)));
+  }
+  .column-body-outset {
+    margin-inline: -1.5rem;
+  }
+  /* The text column sits left of centre, so shift by half the margin. */
+  .column-screen {
+    margin-left: calc(50% - 50vw + (var(--gap) + var(--side)) / 2);
+  }
+}
+
+@media (min-width: 80rem) {
+  :root { --frame: calc(var(--body) + 2 * (var(--gap) + var(--side)) + 2rem); }
+  main,
+  .site-header { padding-inline: calc(var(--gap) + var(--side) + 1rem); }
+  .column-page { margin-left: calc(-1 * (var(--gap) + var(--side))); }
+  .column-screen { margin-left: calc(50% - 50vw); }
+}
+
+.column-screen figcaption { padding-inline: 1rem; }
+
+.column-page img,
+.column-screen img { width: 100%; }
+
+.column-margin,
+.quarto-float-caption-margin {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.column-margin { margin-bottom: 1rem; }
+.column-margin > :first-child { margin-top: 0; }
+.column-margin > :last-child { margin-bottom: 0; }
+
+@media (max-width: 55.99rem) {
+  .column-margin {
+    display: block; /* asides are spans inside paragraphs */
+    margin: 1.25rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--line);
+  }
+}
+
+/* Title block ------------------------------------------------------------ */
+
+#title-block-header {
+  margin-bottom: 2rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+#title-block-header > * { margin: 0.35rem 0 0; }
+
+h1.title {
+  margin: 0 !important;
+  color: var(--text);
+  font-size: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+#title-block-header .description {
+  margin-top: 0.75rem;
+  font-size: 1.0625rem;
+}
+
+#title-block-header .description p { margin: 0; }
+
+#title-block-header .authors { margin-top: 1.25rem; color: var(--text); }
+.author { display: block; }
+
+.orcid svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.75rem !important;
+}
+
+.abstract {
+  margin-top: 1.5rem !important;
+  color: var(--text);
+}
+
+.abstract p { margin-block: 0.35rem 0; }
+
+.abstract-title,
+#TOC h2 {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Table of contents ------------------------------------------------------ */
+
+#TOC {
+  margin-bottom: 2rem; /* not the shorthand: the wide layout sets margin-right */
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+#TOC h2 { margin: 0 0 0.5rem; }
+
+#TOC ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#TOC ul ul { padding-left: 0.875rem; }
+
+#TOC li { margin-top: 0.35rem; }
+
+#TOC a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+#TOC a:hover { color: var(--accent); }
+
+@media (max-width: 55.99rem) {
+  #TOC {
+    padding: 0.75rem 0;
+    border-block: 1px solid var(--line);
+  }
+}
+
+/* Site navigation ------------------------------------------------------- */
+
+.site-header { padding-top: 1.25rem; }
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.25rem;
+  font-size: 0.9375rem;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li { margin: 0; }
+.site-nav .nav-right { margin-left: auto; }
+
+.site-nav a,
+.site-nav summary {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav summary:hover,
+.site-nav [aria-current="page"] { color: var(--text); }
+
+.site-title {
+  color: var(--text) !important;
+  font-weight: 650;
+}
+
+.site-title img { height: 1.5em; vertical-align: middle; }
+
+/* Menus are <details>, so they open without JavaScript. */
+.site-nav details { position: relative; }
+.site-nav summary { cursor: pointer; list-style: none; }
+.site-nav summary::-webkit-details-marker { display: none; }
+.site-nav summary::after { content: " \25BE"; font-size: 0.75em; }
+
+.site-nav details ul {
+  position: absolute;
+  z-index: 1;
+  flex-direction: column;
+  min-width: 10rem;
+  margin-top: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--bg);
+}
+
+.site-nav .menu-header { color: var(--muted); font-size: 0.8125rem; }
+
+/* Text ------------------------------------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.5rem 0 0.5rem;
+  font-weight: 650;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 { font-size: 2rem; }
+h2 { margin-top: 2rem; font-size: 1.5rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.0625rem; }
+h5, h6 { font-size: 1rem; }
+h6 { color: var(--muted); }
+
+p { text-wrap: pretty; }
+p, ul, ol, dl { margin-block: 0.75em; }
+
+[id] { scroll-margin-top: 1rem; }
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.15em;
+}
+
+a:hover { text-decoration-thickness: 0.12em; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+ul, ol { padding-left: 1.5rem; }
+li + li { margin-top: 0.25rem; }
+ul.task-list { padding-left: 0.25rem; list-style: none; }
+ul.task-list input { margin: 0 0.5rem 0 0; }
+
+dt { font-weight: 600; }
+dd { margin: 0.25rem 0 0.75rem 1.5rem; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+
+/* Callouts: minimal: true writes a quote alone in a div, with a bold title. */
+div > blockquote:only-child { border-left-color: var(--accent); color: inherit; }
+div > blockquote:only-child > p:first-child > strong { color: var(--accent); }
+
+hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+sup, sub { line-height: 0; }
+
+/* Bootstrap's class name, which Quarto uses. */
+.visually-hidden,
+.skip-link:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link { display: block; padding: 0.5rem 1rem; }
+
+abbr[title] { text-decoration: underline dotted; }
+mark { background: light-dark(#fff3b0, #5c4b00); color: inherit; }
+.smallcaps { font-variant: small-caps; }
+.underline { text-decoration: underline; }
+
+kbd {
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 0.3em;
+  background: var(--soft);
+  font-size: 0.8em;
+}
+
+@media (max-width: 40rem) {
+  p, li, dd { hyphens: auto; }
+}
+
+/* Code ------------------------------------------------------------------ */
+
+code, kbd, pre, samp { font-family: var(--mono); }
+code { font-size: 0.875em; }
+
+:not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+  background: var(--soft);
+}
+
+pre {
+  margin: 1.25rem 0;
+  padding: 0.875rem 1rem;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  background: var(--soft);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+pre code { font-size: inherit; }
+
+div.sourceCode { margin: 1.25rem 0; }
+div.sourceCode > pre { margin: 0; }
+
+/* GitHub's colours: minimal: true leaves code uncoloured. */
+code span.kw, code span.cf, code span.im, code span.pp { color: light-dark(#cf222e, #ff7b72); }
+code span.st, code span.vs, code span.ss, code span.ch { color: light-dark(#0a3069, #a5d6ff); }
+code span.dv, code span.bn, code span.fl, code span.cn { color: light-dark(#0550ae, #79c0ff); }
+code span.fu { color: light-dark(#8250df, #d2a8ff); }
+code span.bu, code span.sc { color: light-dark(#953800, #ffa657); }
+code span.dt, code span.at { color: light-dark(#116329, #7ee787); }
+code span.al, code span.er { color: light-dark(#82071e, #ffa198); font-weight: 600; }
+code span.co, code span.do, code span.an, code span.cv, code span.in, code span.wa {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.code-with-filename { margin: 1.25rem 0; }
+.code-with-filename-file pre {
+  margin: 0;
+  padding-bottom: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.code-with-filename div.sourceCode { margin: 0; }
+.code-with-filename div.sourceCode > pre { border-radius: 0 0 0.5rem 0.5rem; }
+
+details.code-fold { margin: 1.25rem 0 0.5rem; }
+details.code-fold > summary {
+  color: var(--muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+details.code-fold > div.sourceCode { margin-top: 0.5rem; }
+
+.cell { margin: 1.25rem 0; }
+.cell div.sourceCode, .cell-output pre { margin-block: 0.5rem; }
+
+.cell-output pre {
+  padding-block: 0.25rem;
+  border-left: 2px solid var(--line);
+  border-radius: 0;
+  background: none;
+}
+
+.cell-output-stderr pre { border-left-color: light-dark(#bf8700, #d29922); }
+
+pre.code-annotation-code { position: relative; }
+
+.code-annotation-anchor {
+  position: absolute;
+  right: 0.75rem;
+  padding: 0 0.45em;
+  border-radius: 1em;
+  background: var(--line);
+  color: var(--text);
+  font: 600 0.6875rem/1.6 var(--sans);
+  text-decoration: none;
+}
+
+.code-annotation-container-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.75rem;
+}
+
+.code-annotation-container-grid dd { margin: 0; }
+.code-annotation-container-grid p { margin: 0; }
+
+/* Math ------------------------------------------------------------------ */
+
+/* Math fonts have a smaller x-height than system sans-serifs. */
+math { font-family: var(--math); font-size: 1.1em; }
+
+math[display="block"] { margin: 1.25rem 0; }
+
+/* Firefox and Safari ignore overflow on <math>, so its paragraph scrolls. */
+p:has(math[display="block"]) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Figures and tables ----------------------------------------------------- */
+
+figure { margin: 1.75rem 0; }
+figure > p { margin: 0; }
+
+img, svg, video, iframe { max-width: 100%; height: auto; }
+
+/* Quarto's fallback .ratio has no spacer, so videos get no height. */
+.ratio::before { content: ""; display: block; padding-top: var(--bs-aspect-ratio); }
+
+.quarto-figure-center > figure > div,
+.quarto-figure-center > figure > p { text-align: center; }
+
+/* Centred on one line, left-aligned when wrapped. */
+figcaption {
+  width: fit-content;
+  margin-inline: auto;
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.quarto-float-caption-top { margin: 0 auto 0.6rem; }
+
+.quarto-layout-panel { margin: 1.75rem 0; }
+
+.quarto-layout-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.quarto-layout-cell { min-width: 0; }
+.quarto-layout-cell > figure,
+.quarto-layout-cell > p,
+.quarto-layout-cell > .quarto-figure > figure { margin: 0; }
+
+div.columns { display: flex; gap: 1.5rem; }
+div.column { flex: auto; min-width: 0; }
+
+/* Quarto's ::: grid, which Bootstrap provides in normal Quarto. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.grid > * { grid-column: 1 / -1; }
+.grid > * > :first-child { margin-top: 0; }
+.g-col-1 { grid-column: auto / span 1; }
+.g-col-2 { grid-column: auto / span 2; }
+.g-col-3 { grid-column: auto / span 3; }
+.g-col-4 { grid-column: auto / span 4; }
+.g-col-5 { grid-column: auto / span 5; }
+.g-col-6 { grid-column: auto / span 6; }
+.g-col-7 { grid-column: auto / span 7; }
+.g-col-8 { grid-column: auto / span 8; }
+.g-col-9 { grid-column: auto / span 9; }
+.g-col-10 { grid-column: auto / span 10; }
+.g-col-11 { grid-column: auto / span 11; }
+
+@media (max-width: 30rem) {
+  .quarto-layout-row, div.columns { flex-direction: column; }
+  .quarto-layout-cell, div.column { width: 100% !important; flex-basis: auto !important; }
+}
+
+table {
+  display: block; /* so wide tables scroll instead of widening the page */
+  width: max-content;
+  max-width: 100%;
+  margin: 1.25rem auto;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+th, td {
+  padding: 0.35rem 0.75rem;
+  vertical-align: top;
+}
+
+th { font-weight: 600; text-align: inherit; }
+tr:first-child > * { border-top: 1px solid var(--muted); }
+thead th { border-bottom: 1px solid var(--muted); }
+tbody tr + tr { border-top: 1px solid var(--line); }
+tbody tr:last-child > * { border-bottom: 1px solid var(--muted); }
+td > :first-child, th > :first-child { margin-top: 0; }
+td > :last-child, th > :last-child { margin-bottom: 0; }
+
+/* Theorems, footnotes, references ---------------------------------------- */
+
+.theorem, .proof { margin: 1.25rem 0; }
+
+a.footnote-ref { text-decoration: none; }
+
+section.footnotes {
+  margin-top: 3rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+section.footnotes hr {
+  width: 6rem;
+  margin: 0 0 1.25rem;
+}
+
+section.footnotes ol { padding-left: 1.25rem; }
+a.footnote-back { text-decoration: none; }
+
+.csl-bib-body { font-size: 0.9375rem; }
+.csl-entry { margin-bottom: 0.6rem; }
+.hanging-indent .csl-entry { padding-left: 1.5em; text-indent: -1.5em; }
+.csl-left-margin { float: left; min-width: 2em; }
+.csl-right-inline { margin-left: 2em; }
+
+/* Bootstrap classes ------------------------------------------------------ */
+
+/* Used by Quarto's markup and scripts, and many listing templates. */
+.d-none { display: none !important; }
+.small { font-size: 0.875em; }
+.text-muted { color: var(--muted); }
+
+/* anchor-sections' icon is a Bootstrap icon font character. */
+.anchorjs-link { color: var(--muted); }
+.anchorjs-link::after { content: "#"; }
+
+/* Listings --------------------------------------------------------------- */
+
+.quarto-post {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "meta thumb" "body thumb";
+  column-gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.quarto-post .metadata { grid-area: meta; }
+.quarto-post .body { grid-area: body; display: flex; flex-direction: column; }
+.quarto-post .thumbnail { grid-area: thumb; width: 8rem; }
+
+.quarto-post .metadata a {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.listing-title { margin: 0.25rem 0; }
+
+.quarto-grid-link { color: inherit; text-decoration: none; }
+.quarto-grid-link .listing-title { color: var(--accent); text-decoration: underline; }
+
+.listing-subtitle a,
+.listing-description a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.listing-description p { margin: 0.25rem 0 0; }
+
+.listing-date { white-space: nowrap; }
+
+/* Category pills, in listings and the title block. */
+.quarto-post .listing-categories,
+.quarto-grid-item .listing-categories {
+  display: flex;
+  flex-wrap: wrap;
+  order: 1;
+  gap: 0.375rem;
+  margin-top: 0.6rem;
+}
+
+.quarto-post .listing-category,
+.quarto-grid-item .listing-category,
+.category {
+  padding: 0 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.thumbnail-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.375rem;
+  object-fit: cover;
+}
+
+.list.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  gap: 1.75rem 1.25rem;
+}
+
+.card-img-top { margin: 0; }
+.quarto-grid-item .thumbnail-image { height: auto !important; } /* Quarto sets 150px inline */
+.quarto-grid-item .listing-title { margin: 0.6rem 0 0.25rem; font-size: 1.0625rem; }
+
+.quarto-grid-item .listing-description,
+.card-attribution {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.card-attribution {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.75rem;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+}
+
+.quarto-listing-table { margin-inline: 0; }
+.quarto-listing-table .listing-title { font-size: inherit; }
+
+/* Sort and filter controls. */
+.listing-actions-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-group-text { display: none; } /* empty without Bootstrap's icon font */
+
+/* Page links, with page-size. */
+.pagination {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination li { margin: 0; }
+
+.page-item.active .page-link,
+.page-item.disabled .page-link {
+  color: var(--text);
+  text-decoration: none;
+  pointer-events: none;
+}
+
+select, input[type="text"] {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 40rem) {
+  .quarto-post .thumbnail { width: 5.5rem; }
+}

@@ -1,0 +1,7 @@
+project:
+  output-dir: _site-stock
+
+format:
+  html:
+    html-math-method: mathml
+    mermaid-format: svg

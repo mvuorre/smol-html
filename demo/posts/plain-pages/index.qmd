@@ -1,0 +1,14 @@
+---
+title: Plain pages load fast
+description: Most of a typical page's weight is CSS and JavaScript that the text doesn't need.
+author: Ada Example
+date: 2026-11-20
+categories: [web, news]
+image: thumbnail.svg
+---
+
+A page of text needs very little to look good: a sensible font stack, a comfortable line length, enough spacing, and colours with good contrast.
+
+> Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+>
+> --- Antoine de Saint-Exupéry

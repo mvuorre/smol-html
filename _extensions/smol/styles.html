@@ -1,0 +1,8 @@
+$-- Replaces the inline CSS Pandoc and Quarto add to every page. All of smol's CSS is in smol.css.
+$-- mainfont and monofont override smol's font stacks; html:root outranks smol.css's :root, which loads later.
+$if(mainfont)$
+html:root { --sans: $mainfont$; }
+$endif$
+$if(monofont)$
+html:root { --mono: $monofont$; }
+$endif$

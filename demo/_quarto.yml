@@ -1,0 +1,32 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "posts/*/index.qmd"
+
+profile:
+  group:
+    - [smol, stock]
+
+website:
+  title: smol
+  description: A small, fast Quarto HTML format without Bootstrap.
+  site-url: https://vuorre.com/smol-html/
+  open-graph: true
+  navbar:
+    left:
+      - href: article.qmd
+        text: Article
+      # Takes the page's title.
+      - blog.qmd
+    right:
+      - icon: github
+        href: https://github.com/mvuorre/smol-html
+        aria-label: GitHub
+  # Only the normal-Quarto build shows this.
+  page-footer:
+    left: "Text and code under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)."
+    right: "Built with [Quarto](https://quarto.org/) and smol."
+
+bibliography: references.bib
+toc: true

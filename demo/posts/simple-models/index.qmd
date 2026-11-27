@@ -1,0 +1,24 @@
+---
+title: Simple models first
+subtitle: Why the linear model is a good start
+description: Start with the simplest model that could work, then add what the data demands.
+author: Ben Sample
+date: 2026-10-15
+categories: [statistics, R]
+image: thumbnail.svg
+# Section links, which smol leaves off by default.
+anchor-sections: true
+abstract: |
+  Posts can have an abstract as well as a description. The description shows in listings, feeds and social previews; the abstract shows under the title.
+---
+
+Fit the simple model first:
+
+``` r
+fit <- lm(mpg ~ wt, data = mtcars)
+coef(fit)
+```
+
+## What it misses
+
+Ask what the simple model misses. The model is $\text{mpg}_i = \beta_0 + \beta_1 \text{wt}_i + \varepsilon_i$.

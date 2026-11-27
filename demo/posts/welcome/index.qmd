@@ -1,0 +1,14 @@
+---
+title: Welcome to the blog
+description: The first post, with a description that shows in listings, feeds and social previews.
+author: Ada Example
+date: 2026-09-01
+categories: [news]
+image: thumbnail.svg
+---
+
+This is the first post. It has a title, a description, an author, a date, a category and an image. Listings show some of these, and the post's title block shows others.
+
+## A section
+
+A paragraph with a [link](../../article.qmd) and a footnote.^[A footnote in a post.]

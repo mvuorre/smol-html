@@ -1,0 +1,107 @@
+---
+title: Small pages for scholarly writing
+subtitle: An example article
+description: An example article with the front matter Quarto supports, citations, cross-references, footnotes and notes in the margin.
+date: 2026-11-25
+date-modified: 2026-11-26
+author:
+  - name: Ada Example
+    orcid: 0000-0002-1825-0097
+    email: ada@example.org
+    corresponding: true
+    affiliations:
+      - ref: eu
+  - name: Ben Sample
+    url: https://example.org/ben
+    affiliations:
+      - ref: eu
+      - ref: ai
+affiliations:
+  - id: eu
+    name: Example University
+    department: Department of Psychology
+  - id: ai
+    name: Another Institute
+abstract: |
+  This AI-generated page shows how smol renders a scholarly article. The title block has authors, affiliations, ORCID iDs, dates, a DOI, a license, an abstract and keywords. The text has citations and a bibliography; numbered equations, figures, tables and theorems with cross-references; footnotes; and notes and captions in the margin.
+keywords: [open science, reproducibility, typography]
+doi: 10.5555/12345678
+license: CC BY
+copyright:
+  holder: Ada Example
+  year: 2026
+citation:
+  type: article-journal
+  container-title: Journal of Small Pages
+  volume: 1
+  issue: 1
+funding: The authors received no specific funding for this work.
+google-scholar: true
+cap-location: margin
+---
+
+## Introduction
+
+Literate programming mixes code and prose [@knuth1984]. @cohen1994 criticised significance testing, and others argued for looking at the data first [@tukey1977; @tufte2001, p. 13].
+
+::: column-margin
+A margin note. On phones it sits below the paragraph it belongs to.
+:::
+
+Footnotes go at the end of the page.^[A footnote.] An aside can be written inline. [An aside, written inline in the paragraph.]{.aside}
+
+## Methods
+
+We model the outcome as a straight line plus noise, @eq-model:
+
+$$
+y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, \quad \varepsilon_i \sim \mathcal{N}(0, \sigma^2)
+$$ {#eq-model}
+
+@thm-means bounds the mean.
+
+::: {#thm-means}
+## Arithmetic and geometric means
+
+For non-negative numbers $a$ and $b$, $\frac{a + b}{2} \geq \sqrt{ab}$.
+:::
+
+::: proof
+$(\sqrt{a} - \sqrt{b})^2 \geq 0$. Expand and rearrange.
+:::
+
+## Results
+
+@fig-counts has its caption in the margin, because the article sets `cap-location: margin`. @tbl-groups summarises it.
+
+![Counts in four groups.](images/bars.svg){#fig-counts}
+
+| Group | Count | Share |
+|:------|------:|------:|
+| A     |    90 |  0.18 |
+| B     |   140 |  0.28 |
+| C     |   180 |  0.36 |
+| D     |    90 |  0.18 |
+
+: Counts in each group. {#tbl-groups}
+
+::: column-page
+![A figure as wide as the page.](images/wide.svg)
+:::
+
+::: column-screen
+![A figure as wide as the screen.](images/wide.svg)
+:::
+
+## Discussion
+
+Smaller pages load faster, most of all on phones.^[A second footnote.]
+
+::: {#nte-limits .callout-note title="Limitations"}
+A callout that can be cross-referenced, as @nte-limits.
+:::
+
+## References
+
+::: {#refs}
+:::

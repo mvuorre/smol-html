@@ -1,0 +1,39 @@
+---
+title: Blog
+description: The same posts in each kind of listing smol supports, with an RSS feed.
+toc: false
+listing:
+  - id: default
+    contents: posts
+    sort: date desc
+    type: default
+    categories: true
+    feed: true
+  - id: grid
+    contents: posts
+    sort: date desc
+    type: grid
+  - id: table
+    contents: posts
+    sort: date desc
+    type: table
+    fields: [date, title, author, categories]
+    page-size: 2
+---
+
+## Default
+
+::: {#default}
+:::
+
+## Grid
+
+::: {#grid}
+:::
+
+## Table
+
+Two posts per page.
+
+::: {#table}
+:::
